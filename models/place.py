@@ -1,9 +1,9 @@
 #!/usr/bin/python
-""" holds class Place"""
+""" contains the Place class definition"""
+import sqlalchemy
 import models
 from models.base_model import BaseModel, Base
 from os import getenv
-import sqlalchemy
 from sqlalchemy import Column, String, Integer, Float, ForeignKey, Table
 from sqlalchemy.orm import relationship
 
@@ -20,7 +20,7 @@ if models.storage_t == 'db':
 
 
 class Place(BaseModel, Base):
-    """Representation of Place """
+    """Represents an instance of a place."""
     if models.storage_t == 'db':
         __tablename__ = 'places'
         city_id = Column(String(60), ForeignKey('cities.id'), nullable=False)
@@ -51,13 +51,13 @@ class Place(BaseModel, Base):
         amenity_ids = []
 
     def __init__(self, *args, **kwargs):
-        """initializes Place"""
+        """Initializes a new place instance."""
         super().__init__(*args, **kwargs)
 
     if models.storage_t != 'db':
         @property
         def reviews(self):
-            """getter attribute returns the list of Review instances"""
+            """method that returns the list of Review instances associated with this place."""
             from models.review import Review
             review_list = []
             all_reviews = models.storage.all(Review)
@@ -68,7 +68,7 @@ class Place(BaseModel, Base):
 
         @property
         def amenities(self):
-            """getter attribute returns the list of Amenity instances"""
+            """method that returns the list of Amenity instances associated with this place."""
             from models.amenity import Amenity
             amenity_list = []
             all_amenities = models.storage.all(Amenity)
