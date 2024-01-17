@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" class State """
+""" contains the State class definition"""
 import models
 from models.base_model import BaseModel, Base
 from models.city import City
@@ -10,7 +10,7 @@ from sqlalchemy.orm import relationship
 
 
 class State(BaseModel, Base):
-    """ representation of state class"""
+    """Represents an instance of a state."""
     if models.storage_t == "db":
         __tablename__ = 'states'
         name = Column(String(128), nullable=False)
@@ -19,13 +19,13 @@ class State(BaseModel, Base):
         name = ""
 
     def __init__(self, *args, **kwargs):
-        """initializes state"""
+        """Initializes a new state instance."""
         super().__init__(*args, **kwargs)
 
     if models.storage_t != "db":
         @property
         def cities(self):
-            """getter for list of city and the state"""
+            """method that returns the list of City instances associated with this state."""
             city_list = []
             all_cities = models.storage.all(City)
             for city in all_cities.values():
