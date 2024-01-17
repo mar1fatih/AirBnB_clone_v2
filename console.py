@@ -120,23 +120,19 @@ class HBNBCommand(cmd.Cmd):
             return
         try:
             arguments = args.split(" ")
-            # arguments[0]) --> Class name
-            command = eval("{:s}()".format(arguments[0]))
-            for params in arguments[1:]:
-                if "=" not in params:
+            cmd = eval("{:s}()".format(arguments[0]))
+            for prms in arguments[1:]:
+                if "=" not in prms:
                     continue
-                key, value = params.split("=")
+                key, value = prms.split("=")
                 value = eval(value)
                 if type(value) not in {int, float, str}:
                     continue
                 if type(value) == str:
                     value = value.replace("_", " ")
-                # Set attributes in objects' keys to values
-                setattr(command, key, value)
-            # Save object
-            command.save()
-            # Print id
-            print(command.id)
+                setattr(cmd, key, value)
+            cmd.save()
+            print(cmd.id)
 
         except NameError:
             print("** class doesn't exist **")
