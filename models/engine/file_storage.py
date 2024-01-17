@@ -1,8 +1,5 @@
 #!/usr/bin/python3
-"""
-Contains the FileStorage class
-"""
-
+""" containing the FileStorage class """
 import json
 from models.amenity import Amenity
 from models.base_model import BaseModel
@@ -17,23 +14,23 @@ classes = {"Amenity": Amenity, "BaseModel": BaseModel, "City": City,
 
 
 class FileStorage:
-    """serializes instances to a JSON file & deserializes back to instances"""
+    """serializes & deserializes to instances"""
 
     __file_path = "file.json"
     __objects = {}
 
     def all(self, cls=None):
-        """returns the dictionary __objects"""
+        """ returns the dictionary __objects """
         if cls is not None:
-            new_dict = {}
+            _dict = {}
             for key, value in self.__objects.items():
                 if cls == value.__class__ or cls == value.__class__.__name__:
-                    new_dict[key] = value
-            return new_dict
+                    _dict[key] = value
+            return _dict
         return self.__objects
 
     def new(self, obj):
-        """sets in __objects the obj with key <obj class name>.id"""
+        """sets in __objects """
         if obj is not None:
             key = "{}.{}".format(obj.__class__.__name__, obj.id)
             self.__objects[key] = obj
@@ -57,7 +54,7 @@ class FileStorage:
             pass
 
     def delete(self, obj=None):
-        """delete obj from __objects if it’s inside"""
+        """ delete obj from __objects """
         if obj is not None:
             key = "{}.{}".format(obj.__class__.__name__, obj.id)
             if key in self.__objects:

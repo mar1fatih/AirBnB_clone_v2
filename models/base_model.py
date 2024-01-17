@@ -1,13 +1,13 @@
 #!/usr/bin/python3
 """ class BaseModel """
 
-from datetime import datetime
-import models
-from os import getenv
 import sqlalchemy
+import models
+import uuid
+from datetime import datetime
+from os import getenv
 from sqlalchemy import Column, String, DateTime
 from sqlalchemy.ext.declarative import declarative_base
-import uuid
 
 time = "%Y-%m-%dT%H:%M:%S.%f"
 
@@ -19,9 +19,9 @@ else:
 
 class BaseModel:
     """A base class for all hbnb models"""
-    id = Column(String(60), primary_key=True)
     created_at = Column(DateTime, default=datetime.utcnow())
     updated_at = Column(DateTime, default=datetime.utcnow())
+    id = Column(String(60), primary_key=True)
 
     def __init__(self, *args, **kwargs):
         """Instatntiates a new model"""
@@ -68,5 +68,5 @@ class BaseModel:
         return new_dict
 
     def delete(self):
-        """ delete the current instance from the storage """
+        """ delete current instance from the storage """
         models.storage.delete(self)
