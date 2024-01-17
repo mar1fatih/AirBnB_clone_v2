@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" initialize the models package """
+"""This module instantiates an object of class FileStorage and DBStorage"""
 from os import getenv
 
 
