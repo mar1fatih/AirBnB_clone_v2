@@ -1,15 +1,15 @@
 #!/usr/bin/python3
-""" holds class User"""
+""" contains the User class definition"""
 import models
+import sqlalchemy
 from models.base_model import BaseModel, Base
 from os import getenv
-import sqlalchemy
 from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
 
 
 class User(BaseModel, Base):
-    """Representation of a user """
+    """Represents an instance of a user."""
     if models.storage_t == 'db':
         __tablename__ = 'users'
         email = Column(String(128), nullable=False)
@@ -25,5 +25,5 @@ class User(BaseModel, Base):
         last_name = ""
 
     def __init__(self, *args, **kwargs):
-        """initializes user"""
+        """Initializes a new user instance."""
         super().__init__(*args, **kwargs)
