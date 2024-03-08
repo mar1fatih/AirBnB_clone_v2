@@ -20,6 +20,7 @@ def do_pack():
     else:
         return None
 
+
 def do_deploy(archive_path):
     """ Distributes an archive to the web servers """
     if path.exists(archive_path) is False:
@@ -39,6 +40,7 @@ def do_deploy(archive_path):
         return True
     except:
         return False
+
 
 def deploy():
     """ Creates and distributes an archive to the web servers """
