@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 """activate web flask on 0.0.0.0:5000"""
-from Flask import flask
+from flask import Flask
 
 
-app = flask(__name__)
+app = Flask(__name__)
 
 @app.route("/", strict_slashes=False)
 def hello_hbnb():
