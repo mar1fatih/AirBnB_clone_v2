@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """/hbnb: display “HBNB”"""
-from flsk import Flask
+from flask import Flask
 app = Flask(__name__)
 
 
