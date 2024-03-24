@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""/hbnb: display “HBNB”"""
+"""web flask airbnb"""
 from flask import Flask
 app = Flask(__name__)
 
@@ -29,5 +29,11 @@ def pythoniscool(text='is_cool'):
     return 'Python ' + text.replace('_', ' ')
 
 
+@app.route('/number/<int:n>', strict_slashes=False)
+def num(n):
+    """display number"""
+    return n + " is a number"
+
+
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port="5000")
+    app.run(host="0.0.0.0", port="5000")   
