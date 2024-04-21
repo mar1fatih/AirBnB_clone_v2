@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """Flask web application"""
 from flask import Flask, reder_template
-from models import *
+from models import storage
 
 app = Flask(__name__)
 
@@ -10,13 +10,13 @@ app = Flask(__name__)
 def states_list():
     """display all states"""
     states = list(storage.all('states').values())
-    states = sorted(states, key=states.name)
-    return render_template('7-states_list.html', states=states)
+    states_sorted = sorted(states, key=states.name)
+    return render_template('7-states_list.html', states=states_sorted)
 
 
 @app.teardown_appcontext
-def teardown(exception):
-    """closes the storage on teardown"""
+def teardown_db(exception):
+    """close the storage"""
     storage.close()
 
 
