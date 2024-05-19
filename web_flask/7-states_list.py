@@ -10,7 +10,7 @@ app = Flask(__name__)
 def states_list():
     """display all states"""
     state = list(storage.all('State').values())
-    states = sorted(states, key=states.name)
+    states = sorted(state, key=state.name)
     return render_template('7-states_list.html', states=states)
 
 
