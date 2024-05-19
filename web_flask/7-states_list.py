@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """Flask web application"""
-from flask import Flask, reder_template
+from flask import Flask, render_template
 from models import storage
 
 app = Flask(__name__)
